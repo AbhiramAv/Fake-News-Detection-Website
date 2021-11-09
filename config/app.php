@@ -175,8 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
-        TCG\Voyager\VoyagerServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class,
+        App\Providers\JetstreamServiceProvider::class,
 
     ],
 
