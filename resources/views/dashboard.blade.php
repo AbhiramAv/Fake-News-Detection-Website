@@ -66,7 +66,7 @@
                             @endif
                         @endforeach
                     @elseif(str_contains(url()->full(), '/snopes'))
-                        @include('spages.snopes'.$id)
+                        @include('snopesarticles.snopes'.$id)
                     @elseif(str_contains(url()->full(), '/survey'))
                         
                     @endif
