@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Oranienbaum
+- Font Author: Copyright (c) 2012, Oleg Pospelov (oleg@pospelov.com), Jovanny Lemonad (lemonad@jovanny.ru), with Reserved Font Name 'Oranienbaum'
+- Font Source: http://fonts.gstatic.com/s/oranienbaum/v10/OZpHg_txtzZKMuXLIVrx-3zn7kz3dpHc.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

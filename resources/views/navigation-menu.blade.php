@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="{{ url('/css/app.css') }}" />
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,31 +13,14 @@
                         </button>
                     </a>
                 </div>
+
                 <!-- Navigation Links -->
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('admin_dashboard')">
-                        {{ __('Admin Dashboard') }}
-                    </x-jet-nav-link>
-                </div> --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" active="{{ (str_contains(url()->full(), '/article') or str_contains(url()->full(), '/allarticles')) ? 'active': '' }}">
+                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Home') }}
                     </x-jet-nav-link>
                 </div>
             </div>
-
-            <!-- Search box-->
-            <form action="{{ route('search') }}" style="margin-left:10%">
-                <div style="margin-left: auto;margin-top: 4%; width: 155%;">
-                    <div class="shadow flex">
-                        <input class="w-full rounded p-2" name="search" type="text" placeholder="Search..." value="{{ request('search') }}">
-                        <button style="background-color: white" class="bg-white w-auto flex justify-end items-center text-blue-500 p-2 hover:text-blue-400" type="submit">
-                            <i class="material-icons">search</i>
-                            {{-- <a href="{{ route('users.index') }}" class="material-icons">Search</a> --}}
-                        </button>
-                    </div>
-                </div>
-            </form>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
@@ -123,7 +105,7 @@
                             </x-jet-dropdown-link>
 
                             @if (Auth::user()->role == '1')
-                                    <x-jet-dropdown-link href="{{ route('users.index') }}" active="{{ str_contains(url()->full(), '/users') ? 'active': '' }}">
+                                    <x-jet-dropdown-link href="{{ route('users.index') }}" active="{{ str_contains(url()->full(), '/user') ? 'active': '' }}">
                                         Users
                                     </x-jet-dropdown-link>
                             @endif

@@ -5,10 +5,7 @@
         </h2>
     </x-slot>
     <div>
-        <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
-            {{-- <div class="block mb-8">
-                <a href="{{ route('users.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Add User</a>
-            </div> --}}
+        <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8" style="height: 533px;">
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -49,7 +46,7 @@
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $user->verified_user }}
+                                            {{ $user->is_verified }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">

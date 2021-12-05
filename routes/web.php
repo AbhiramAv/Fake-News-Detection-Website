@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\PanelController;
-use App\Http\Controllers\ArticleController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ElasticSearchController;
+use App\Http\Controllers\PaperController;
+use App\Http\Controllers\CountController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,58 +17,51 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
- */
+*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/home', function () {
-//     return view('dashboard');
-// });
+Route::get('/home', function () {
+    return view('dashboard');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Request $request) {
-    $role = Auth::user()->verified_user;
-    if ($role == '1') {
-        // return view('dashboard');
-        // Route::get('/dashboard', [SearchController::class, 'allArticles']);
-        return redirect()->action([ArticleController::class, 'index']);
-    } else {
+    $role = Auth::user()->is_verified;
+    Log::info('User failed to login.', ['id' => $role->id]);
+    if ($role == '0') {
         echo '<script type="text/javascript">alert("In order to login. You need to get access from admin!");</script>';
-        Cookie::queue(Cookie::forget('laravel_session'));
-        Cookie::queue(Cookie::forget('XSRF-TOKEN'));
-        // return back();
-        // return redirect()->back()->with('alert', 'Deleted!');
         return back();
+    } else {
+        return view('search.serp');
     }
 })->name('dashboard');
 
-Route::get('redirect_to', [HomeController::class, 'index'])->middleware(['auth:sanctum', 'verified']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('users', \App\Http\Controllers\UsersController::class);
+    Route::resource('users', \App\Http\Controllers\AdminController::class);
 });
 
-Route::get('/article', [SearchController::class, 'index'])->name('search');
+Route::get('redirects', [HomeController::class, 'index'])->middleware(['auth:sanctum', 'verified']);
 
-Route::get('/allarticles', [ArticleController::class, 'index']);
+Route::get('recaptchacreate', 'RecaptchaController@create');
+Route::post('store', 'RecaptchaController@store');
 
-Route::get('/article/{id}', [PanelController::class, 'index']);
+Route::get('/article', [ElasticSearchController::class, 'index'])->name('search');
 
-Route::get('/article/{id}/dashboard', [PanelController::class, 'dashboard']);
+Route::get('/fakearticles', [CountController::class, 'index']);
 
-Route::get('/article/{id}/snopes', [PanelController::class, 'dashboard']);
+Route::get('/article/{id}', [PaperController::class, 'index']);
 
-Route::get('/article/{id}/survey', [PanelController::class, 'dashboard']);
+Route::get('/article/{id}/dashboard', [PaperController::class, 'dashboard']);
+ 
+Route::get('/article/{id}/snopes', [PaperController::class, 'dashboard']);
 
-Route::get('/policy', function() {
-    return view('policy');
-});
+Route::get('/article/{id}/survey', [PaperController::class, 'dashboard']);
 
-// Route::get('/snoopes', function () {
-//     return view('dashboard');
-// })->name('snoopes');
 
-// Route::get('/survey', function () {
-//     return view('dashboard');
-// })->name('survey');
+

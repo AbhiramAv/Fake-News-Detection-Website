@@ -1,16 +1,17 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{-- {{ __('Dashboard') }} --}}
-            Admin Dashboard ---
-        </h2>
     </x-slot>
+    <!-- Search box-->
+    <form action="{{ route('search') }}" style="margin-left:30%">
+                <div style="margin-top: 4%; width: 60%;">
+                    <div class="shadow flex">
+                        <input class="w-full rounded p-2" name="search" type="text" placeholder="Looking for articles?" value="{{ request('search') }}">
+                        <button style="background-color: white" class="bg-white w-auto flex justify-end items-center text-blue-500 p-2 hover:text-blue-400" type="submit">
+                            <i class="material-icons">search</i>
+                            {{-- <a href="{{ route('users.index') }}" class="material-icons">Search</a> --}}
+                        </button>
+                        <img onclick="" src="https://i.imgur.com/cHidSVu.gif" />
+                    </div>
+                </div>
+            </form>
 
-    {{-- <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
-            </div>
-        </div>
-    </div> --}}
 </x-app-layout>

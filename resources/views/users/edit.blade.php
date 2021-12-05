@@ -49,10 +49,10 @@
                     
 
                         <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="verified_user" class="block font-medium text-sm text-gray-700">Verify User</label>
-                            <input name="verified_user" id="verified_user" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{ old('verified_user', $user->verified_user) }}" />
-                            @error('verified_user')
+                            <label for="is_verified" class="block font-medium text-sm text-gray-700">Verify User</label>
+                            <input name="is_verified" id="is_verified" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                   value="{{ old('is_verified', $user->is_verified) }}" />
+                            @error('is_verified')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
