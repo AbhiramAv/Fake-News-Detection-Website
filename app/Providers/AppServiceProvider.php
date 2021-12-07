@@ -21,8 +21,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(\Illuminate\Http\Request $request)
     {
-        //
+        // \URL::forceScheme('https')  
+        // if (!empty(env('NGROK_URL'))) {
+        //    $this->app['url']->forceRootUrl(env('NGROK_URL'));
+        // }
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ElasticSearchController;
 use App\Http\Controllers\PaperController;
 use App\Http\Controllers\CountController;
+use App\Http\Controllers\SurveyController;
 use Illuminate\Http\Request;
 
 /*
@@ -46,12 +47,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', \App\Http\Controllers\AdminController::class);
 });
 
-Route::get('redirects', [HomeController::class, 'index'])->middleware(['auth:sanctum', 'verified']);
 
 Route::get('recaptchacreate', 'RecaptchaController@create');
 Route::post('store', 'RecaptchaController@store');
 
-Route::get('/article', [ElasticSearchController::class, 'index'])->name('search');
+Route::get('/fakearticle', [ElasticSearchController::class, 'index'])->name('search');
 
 Route::get('/fakearticles', [CountController::class, 'index']);
 
@@ -63,5 +63,6 @@ Route::get('/article/{id}/snopes', [PaperController::class, 'dashboard']);
 
 Route::get('/article/{id}/survey', [PaperController::class, 'dashboard']);
 
+Route::get('/article/{id}/SurveyCreate', [SurveyController::class, 'SurveyCreate']);
 
-
+Route::post("surveydata", [SurveyController::class, 'getData']);
